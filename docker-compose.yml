@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/data
+    environment:
+      - WEBHOOK_SECRET=${WEBHOOK_SECRET:-testsecret}
+      - DATABASE_URL=sqlite:////data/app.db
+      - LOG_LEVEL=INFO
+    restart: always
